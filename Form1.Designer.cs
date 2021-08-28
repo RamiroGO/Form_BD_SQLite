@@ -70,7 +70,7 @@ namespace Form_BD_SQLite
 			this.button3.TabIndex = 8;
 			this.button3.Text = "Eliminar Dato";
 			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.btn_Eliminar_Dato);
+			this.button3.Click += new System.EventHandler(this.Btn_Eliminar_Dato);
 			// 
 			// button2
 			// 
@@ -80,7 +80,7 @@ namespace Form_BD_SQLite
 			this.button2.TabIndex = 7;
 			this.button2.Text = "Modificar Dato";
 			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.btn_Modificar_Dato);
+			this.button2.Click += new System.EventHandler(this.Btn_Modificar_Dato);
 			// 
 			// button1
 			// 
@@ -90,7 +90,7 @@ namespace Form_BD_SQLite
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Crear Dato";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.btn_Crear_Dato);
+			this.button1.Click += new System.EventHandler(this.Btn_Crear_Dato);
 			// 
 			// label3
 			// 

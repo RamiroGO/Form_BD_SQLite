@@ -35,17 +35,17 @@ namespace Form_BD_SQLite
 			};
 		}
 
-		private void btn_Crear_Dato(object sender, EventArgs e)
+		private void Btn_Crear_Dato(object sender, EventArgs e)
 		{
 
 		}
 
-		private void btn_Modificar_Dato(object sender, EventArgs e)
+		private void Btn_Modificar_Dato(object sender, EventArgs e)
 		{
 
 		}
 
-		private void btn_Eliminar_Dato(object sender, EventArgs e)
+		private void Btn_Eliminar_Dato(object sender, EventArgs e)
 		{
 
 		}
