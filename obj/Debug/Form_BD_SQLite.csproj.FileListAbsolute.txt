@@ -1,0 +1,15 @@
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\Form_BD_SQLite.exe.config
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\Form_BD_SQLite.exe
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\Form_BD_SQLite.pdb
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.csproj.AssemblyReference.cache
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.Properties.Resources.resources
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.csproj.GenerateResource.cache
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.csproj.CoreCompileInputs.cache
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.exe
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.pdb
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.Form1.resources
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\Dapper.dll
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\System.Data.SQLite.dll
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\Dapper.xml
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\bin\Debug\System.Data.SQLite.xml
+C:\Users\10\OneDrive\Programacion\Visual_Studio\Bases de Datos\SQLite\Form_BD_SQLite\obj\Debug\Form_BD_SQLite.csproj.CopyComplete
