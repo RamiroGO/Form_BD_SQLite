@@ -1,8 +1,11 @@
-﻿using Form_BDSQlite;
+﻿using Form_BD_SQLite;
+using Form_BD_SQLite.Models;
 
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+
+using Vehiculo;
 
 namespace Form_BD_SQLite
 {
@@ -22,7 +25,7 @@ namespace Form_BD_SQLite
 
 			#region Visualizar en Tabla
 			foreach (Camion camion in Camions)
-				dataGridView1.Rows.Add(camion.Nombre, camion.tipo, camion.capacidad);
+				dataGridView1.Rows.Add(camion.Nombre, camion.Tipo, camion.Capacidad);
 			#endregion
 		}
 
@@ -37,7 +40,8 @@ namespace Form_BD_SQLite
 
 		private void Btn_Crear_Dato(object sender, EventArgs e)
 		{
-
+			Camion camion = new Camion("aaaaaa",Camion_Tipo.Persona,80);
+			SQLite_DataAccess.Set_Camion(camion);
 		}
 
 		private void Btn_Modificar_Dato(object sender, EventArgs e)
