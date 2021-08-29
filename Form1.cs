@@ -42,6 +42,9 @@ namespace Form_BD_SQLite
 		{
 			Camion camion = new Camion("aaaaaa", "Persona",80);
 			SQLite_DataAccess.Set_Camion(camion);
+
+			foreach (Camion _camion in SQLite_DataAccess.Get_Camiones())
+				dataGridView1.Rows.Add(_camion.Nombre, _camion.Tipo, _camion.Capacidad);
 		}
 
 		private void Btn_Modificar_Dato(object sender, EventArgs e)
