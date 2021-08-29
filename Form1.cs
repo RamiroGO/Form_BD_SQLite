@@ -33,14 +33,14 @@ namespace Form_BD_SQLite
 		{
 			return new List<Camion>()
 			{
-				new Camion("Tesla", Camion_Tipo.Persona, 5),
-				new Camion("Ford", Camion_Tipo.Carga, 50),
+				new Camion("Tesla", "Persona", 5),
+				new Camion("Ford", "Carga", 50),
 			};
 		}
 
 		private void Btn_Crear_Dato(object sender, EventArgs e)
 		{
-			Camion camion = new Camion("aaaaaa",Camion_Tipo.Persona,80);
+			Camion camion = new Camion("aaaaaa", "Persona",80);
 			SQLite_DataAccess.Set_Camion(camion);
 		}
 
