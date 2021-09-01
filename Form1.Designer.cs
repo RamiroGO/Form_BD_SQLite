@@ -42,10 +42,17 @@ namespace Form_BD_SQLite
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Capacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Date_LastEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -64,7 +71,7 @@ namespace Form_BD_SQLite
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Location = new System.Drawing.Point(12, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(324, 145);
+			this.panel1.Size = new System.Drawing.Size(536, 145);
 			this.panel1.TabIndex = 0;
 			// 
 			// label4
@@ -166,17 +173,65 @@ namespace Form_BD_SQLite
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(19, 164);
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Nombre,
+            this.Tipo,
+            this.Capacidad,
+            this.Date_LastEdit});
+			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(302, 177);
+			this.dataGridView1.Size = new System.Drawing.Size(533, 319);
 			this.dataGridView1.TabIndex = 1;
+			this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.dataGridView1);
+			this.panel2.Location = new System.Drawing.Point(12, 172);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(533, 319);
+			this.panel2.TabIndex = 2;
+			// 
+			// Id
+			// 
+			this.Id.Frozen = true;
+			this.Id.HeaderText = "Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			// 
+			// Nombre
+			// 
+			this.Nombre.Frozen = true;
+			this.Nombre.HeaderText = "Nombre";
+			this.Nombre.Name = "Nombre";
+			// 
+			// Tipo
+			// 
+			this.Tipo.Frozen = true;
+			this.Tipo.HeaderText = "Tipo";
+			this.Tipo.Name = "Tipo";
+			// 
+			// Capacidad
+			// 
+			this.Capacidad.Frozen = true;
+			this.Capacidad.HeaderText = "Capacidad";
+			this.Capacidad.Name = "Capacidad";
+			// 
+			// Date_LastEdit
+			// 
+			this.Date_LastEdit.Frozen = true;
+			this.Date_LastEdit.HeaderText = "Date_LastEdit";
+			this.Date_LastEdit.Name = "Date_LastEdit";
+			this.Date_LastEdit.ReadOnly = true;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(348, 353);
-			this.Controls.Add(this.dataGridView1);
+			this.ClientSize = new System.Drawing.Size(560, 496);
+			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Name = "Form1";
 			this.Text = "Form1";
@@ -185,6 +240,7 @@ namespace Form_BD_SQLite
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -204,6 +260,12 @@ namespace Form_BD_SQLite
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Capacidad;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Date_LastEdit;
 	}
 }
 
