@@ -11,6 +11,10 @@
 
 	public class SQLite_DataAccess
 	{
+		/// <summary>
+		/// Se buscara en el archivo del Proyecto "App.config" por la información contenida en la etiqueta "connectionStrings" para localizar y acceder a la base de datos SQLite; Bajo un nombre "Default" y de nombre "DemoDB.db".
+		/// </summary>
+		/// <returns></returns>
 		private static SQLiteConnection SQLiteConnection_Loaded() => new SQLiteConnection(
 			  ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
 
