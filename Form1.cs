@@ -9,52 +9,43 @@ using Vehiculo;
 
 namespace Form_BD_SQLite
 {
-	public partial class Form1 : Form
+	public partial class Form1: Form
 	{
 		private List<Camion> dataGridView1_backup;
 		public Form1()
 		{
-			#region Inicializar Componentes
 			InitializeComponent();
-			//dataGridView1.Columns.Add("Id", "Id");
-			//dataGridView1.Columns.Add("Date_LastEdit", "Date_LastEdit");
-			//dataGridView1.Columns.Add("Nombre", "Nombre Camión");
-			//dataGridView1.Columns.Add("Tipo", "Tipo de Camión");
-			//dataGridView1.Columns.Add("Capacidad", "Capacidad del Camión");
-			#endregion
 			Show_Table();
 		}
 
 		private void Btn_Crear_Dato(object sender, EventArgs e)
 		{
-			SQLite_DataAccess.Set_Camion(new Camion(textBox1.Text, textBox2.Text, (int)numericUpDown1.Value, date_last_edit: DateTime.UtcNow.Ticks));
+			SQLite_DataAccess.New_Camion(new Camion(textBox1.Text, textBox2.Text, (int)numericUpDown1.Value, Date_All_LastEdit: DateTime.UtcNow.Ticks));
 			Show_Table();
 		}
 		private void Btn_Modificar_Dato(object sender, EventArgs e)
 		{
-			string Value_now, Value_old, NameColumn;
-
-			for (int corre_column = 0; corre_column != dataGridView1.ColumnCount; corre_column++)
-			{
-				// Exploración de Columnas
-				NameColumn = dataGridView1.Columns[corre_column].Name;
-				for (int corre_id = 0; corre_id != dataGridView1.RowCount; corre_id++)
-				{
-					// Comparación de datos previos con los actuales para identificar ediciones.
-					Value_old = dataGridView1_backup[corre_id].Nombre;
-					Value_now = dataGridView1[NameColumn, corre_id].Value.ToString();
-					if (Value_old != Value_now) // Optimizar: Actuar si los valores son diferentes.
-						if ((long)dataGridView1["Date_LastEdit", corre_id].Value > dataGridView1_backup[corre_id].Date_LastEdit)
-							SQLite_DataAccess.Edit_Camion_Set_Id(_set: NameColumn + " = '" + Value_now + "'", _where: "WHERE Id = " + (corre_id + 1).ToString("#") + ";");
-						else
-						{
-							// Si la edición del backup es más reciente que la manipulación en esta interfaz, entonces esta se tiene que actualizar con el backup.
-							//dataGridView1[NameColumn, corre_id].Value = dataGridView1_backup[corre_id];
-							dataGridView1["Date_LastEdit", corre_id].Value = dataGridView1_backup[corre_id].Date_LastEdit;
-						}
-				}
-			}
+			// Revización de Filas y Columnas
+			for(int corre_column = 1; corre_column != dataGridView1_actual.ColumnCount; corre_column += 2)
+				for(int corre_id = 0; corre_id != dataGridView1_actual.RowCount; corre_id++)
+					this.Edit_Cell(corre_id, corre_column);
 			Show_Table();
+		}
+		private bool dataGridView1_actual_CellValueChanged_busy = false;
+		/// <summary>
+		/// Guardar momento en que los valores de celdas han sido cambiados.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void DataGridView1_actual_CellValueChanged(Object sender, DataGridViewCellEventArgs e)
+		{
+			// Confirmación de que la tabla ya esté armada
+			if(e.RowIndex > 0 && !dataGridView1_actual_CellValueChanged_busy)
+			{
+				dataGridView1_actual_CellValueChanged_busy = true;
+				this.Edit_Cell(e.RowIndex, e.ColumnIndex);
+				dataGridView1_actual_CellValueChanged_busy = false;
+			}
 		}
 		private void Btn_Eliminar_Dato(object sender, EventArgs e)
 		{
@@ -67,30 +58,49 @@ namespace Form_BD_SQLite
 		/// </summary>
 		private void Show_Table()
 		{
+			// Desactivar evento por edición de tabla dataGridView1_actual.
+			dataGridView1_actual_CellValueChanged_busy = true;
+
 			// Limpiar tabla y evidencias de cambios.
-			dataGridView1.Rows.Clear();
+			dataGridView1_actual.Rows.Clear();
 			dataGridView1_backup = new List<Camion>();
 			// Guardar original y copia
-			foreach (Camion camion in SQLite_DataAccess.Get_Camiones())
+			foreach(Camion camion in SQLite_DataAccess.Get_Camiones())
 			{
-				dataGridView1.Rows.Add(camion.Id, camion.Nombre, camion.Tipo, camion.Capacidad, camion.Date_LastEdit);
-				dataGridView1_backup.Add(new Camion(camion.Nombre, camion.Tipo, camion.Capacidad, camion.Date_LastEdit));
+				dataGridView1_actual.Rows.Add(
+					camion.Id,
+					camion.Nombre,
+					camion.Nombre_Date_LastEdit,
+					camion.Tipo,
+					camion.Tipo_Date_LastEdit,
+					camion.Capacidad,
+					camion.Capacidad_Date_LastEdit);
+
+				dataGridView1_backup.Add(new Camion(camion));
 			}
+
+			// Reactivar evento por edición de tabla dataGridView1_actual.
+			dataGridView1_actual_CellValueChanged_busy = false;
 		}
 
-		private List<Camion> Generar_Datos()
+		private void Edit_Cell(int rowIndex, int columnIndex)
 		{
-			return new List<Camion>()
+			String val_old = this.dataGridView1_backup[rowIndex].Get_ValueColumn(columnIndex);
+			String val_now = dataGridView1_actual.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+			// Comprobar la existencia de un evento de edición.
+			if(val_now != val_old)
 			{
-				new Camion("Persona", "Tesla",5,DateTime.UtcNow.Ticks),
-				new Camion("Ford", "Carga", 50, DateTime.UtcNow.Ticks),
-			};
-		}
+				// Guardar el Date/Momento de la edición.
+				this.dataGridView1_actual[Camion.Get_DateColumn(columnIndex), rowIndex].Value = long.Parse(DateTime.UtcNow.Ticks.ToString());
 
-		private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.RowIndex > 0)
-				dataGridView1["Date_LastEdit", e.RowIndex].Value = long.Parse(DateTime.UtcNow.Ticks.ToString());
+				string
+					NameColumn = this.dataGridView1_actual.Columns[columnIndex].Name,
+					Value_now = this.dataGridView1_actual[NameColumn, rowIndex].Value.ToString(); ;
+				// Realización de la consulta para editar en el momento de confirmar la terminación de la edición de la celda.
+				SQLite_DataAccess.Edit_Camion_Set_Id(
+					_set: NameColumn + " = '" + Value_now + "'",
+					_where: "WHERE Id = " + (rowIndex + 1).ToString("#") + ";");
+			}
 		}
 	}
 }
